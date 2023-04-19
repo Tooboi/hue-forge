@@ -2,9 +2,19 @@ import React, { useState, useEffect } from 'react';
 // import Overlay from '../components/Overlay'
 // import HueCube from '../assets/HueCube4.webm';
 import Scroll from '../components/Scroll';
+import SaturationValuePicker from '../components/SaturationValuePicker';
 
 const Hero = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
+
+  const [hue, setHue] = useState(0);
+  const [saturation, setSaturation] = useState(100);
+  const [value, setValue] = useState(50);
+
+  const handleSVChange = (newSaturation, newValue) => {
+    setSaturation(newSaturation);
+    setValue(newValue);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,7 +41,8 @@ const Hero = () => {
   return (
     <div className="bg-stone-950 flex justify-center">
       {/* <video src={HueCube} autoPlay loop muted /> */}
-      <img src={images[currentFrame]} alt={`Image ${currentFrame}`} />
+      <SaturationValuePicker hue={hue} saturation={saturation} value={value} onSVChange={handleSVChange} />
+      {/* <img src={images[currentFrame]} alt={`Image ${currentFrame}`} /> */}
       <div className="flex ">
         {/* <div className="container mx-auto">
       <img
@@ -40,7 +51,7 @@ const Hero = () => {
         alt="animation"
       />
     </div> */}
-        <Scroll />
+        {/* <Scroll /> */}
       </div>
     </div>
   );
